@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    stream:
+      rabbit:
+        bindings:
+          messagesChannel:
+            durableSubscription: true
+      bindings:
+        messagesChannel:
+          binder: rabbit
+          destination: message.exchange
+          group: testgroup

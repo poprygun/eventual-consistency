@@ -1,0 +1,8 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        messagesChannel:
+          destination: message.exchange
+          contentType: application/json
+          group: testgroup

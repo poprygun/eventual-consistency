@@ -1,0 +1,8 @@
+---
+applications:
+- name: producer-service
+  host: producer-service
+  path: target/producer-service-0.0.1-SNAPSHOT.jar
+  buildpack: https://github.com/cloudfoundry/java-buildpack.git
+  services:
+  - mq-service
