@@ -7,6 +7,6 @@ Consumer prints out the contents of the message.  Consumer property durableSubsc
 ### Create PCF RabbitMQ service
 
 ```bash
-cf create-service p-rabbitmq standard gyft-rabbit
+cf create-service p-rabbitmq standard mq-service
 ```
 

@@ -18,49 +18,47 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.UUID;
 
 
-// TODO: 9/11/16 change using https://www.javacodegeeks.com/2016/08/integrating-rabbitmq-using-spring-cloud-stream.html
-
 @SpringBootApplication
 public class ProducerServiceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ProducerServiceApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(ProducerServiceApplication.class, args);
+    }
 }
 
 interface MessageSource {
 
-	String CHANNEL_NAME = "messagesChannel";
+    String CHANNEL_NAME = "messagesChannel";
 
-	@Output
-	MessageChannel messagesChannel();
+    @Output
+    MessageChannel messagesChannel();
 }
 
 @MessagingGateway
 interface MessageGateway {
 
-	@Gateway(requestChannel = MessageSource.CHANNEL_NAME)
-	void generate(MessageUnit messageUnit);
+    @Gateway(requestChannel = MessageSource.CHANNEL_NAME)
+    void generate(MessageUnit messageUnit);
 }
 
 class MessageUnit {
-	private final String id;
-	private final String message;
+    private final String id;
+    private final String message;
 
-	@JsonCreator
-	public MessageUnit(@JsonProperty("id") String id
-			, @JsonProperty("message") String message) {
-		this.id = id;
-		this.message = message;
-	}
+    @JsonCreator
+    public MessageUnit(@JsonProperty("id") String id
+            , @JsonProperty("message") String message) {
+        this.id = id;
+        this.message = message;
+    }
 
-	public String getId() {
-		return id;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public String getMessage() {
-		return message;
-	}
+    public String getMessage() {
+        return message;
+    }
 }
 
 @RestController
@@ -68,21 +66,22 @@ class MessageUnit {
 @Slf4j
 class MessagesRestController {
 
-	@RequestMapping(method = RequestMethod.GET)
-	@ResponseBody
-	public MessageUnit ping() {
-		MessageUnit sampleWorkUnit
-				= new MessageUnit(UUID.randomUUID().toString()
-							, "...Processing message sent : " + System.currentTimeMillis());
-		messageGateway.generate(sampleWorkUnit);
-		log.info("Sent message======>");
-		return sampleWorkUnit;
-	}
+    @RequestMapping(method = RequestMethod.GET)
+    @ResponseBody
+    public MessageUnit ping() {
+        String message = "...Processing message sent : " + System.currentTimeMillis();
+        MessageUnit sampleWorkUnit
+                = new MessageUnit(UUID.randomUUID().toString()
+                , message);
+        messageGateway.generate(sampleWorkUnit);
+        log.info("Sent ======> {}", message);
+        return sampleWorkUnit;
+    }
 
-	@Autowired
-	public MessagesRestController(MessageGateway messageGateway) {
-		this.messageGateway = messageGateway;
-	}
+    @Autowired
+    public MessagesRestController(MessageGateway messageGateway) {
+        this.messageGateway = messageGateway;
+    }
 
-	private MessageGateway messageGateway;
+    private MessageGateway messageGateway;
 }
