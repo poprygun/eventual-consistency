@@ -70,12 +70,12 @@ class MessagesRestController {
     @ResponseBody
     public MessageUnit ping() {
         String message = "...Processing message sent : " + System.currentTimeMillis();
-        MessageUnit sampleWorkUnit
+        MessageUnit messageUnit
                 = new MessageUnit(UUID.randomUUID().toString()
                 , message);
-        messageGateway.generate(sampleWorkUnit);
+        messageGateway.generate(messageUnit);
         log.info("Sent ======> {}", message);
-        return sampleWorkUnit;
+        return messageUnit;
     }
 
     @Autowired
