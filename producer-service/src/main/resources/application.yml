@@ -5,4 +5,4 @@ spring:
         messagesChannel:
           destination: message.exchange
           contentType: application/json
-          group: testgroup
+          group: messagegroup

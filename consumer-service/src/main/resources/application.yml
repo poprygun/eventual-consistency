@@ -9,4 +9,4 @@ spring:
         messagesChannel:
           binder: rabbit
           destination: message.exchange
-          group: testgroup
+          group: messagegroup
