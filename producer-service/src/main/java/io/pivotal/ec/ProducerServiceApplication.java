@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.stream.annotation.Output;
+import org.springframework.http.MediaType;
 import org.springframework.integration.annotation.Gateway;
 import org.springframework.integration.annotation.MessagingGateway;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
@@ -62,14 +62,13 @@ class MessageUnit {
 }
 
 @RestController
-@RequestMapping("/messages")
 @Slf4j
 class MessagesRestController {
 
-    @RequestMapping(method = RequestMethod.GET)
-    @ResponseBody
+    @RequestMapping(value = "/messages", method = RequestMethod.GET
+            , produces=MediaType.APPLICATION_JSON_VALUE)
     public MessageUnit ping() {
-        String message = "...Processing message sent : " + System.currentTimeMillis();
+        String message = "Processing message sent " + System.currentTimeMillis();
         MessageUnit messageUnit
                 = new MessageUnit(UUID.randomUUID().toString()
                 , message);
@@ -81,6 +80,10 @@ class MessagesRestController {
     @Autowired
     public MessagesRestController(MessageGateway messageGateway) {
         this.messageGateway = messageGateway;
+    }
+
+
+    public MessagesRestController() {
     }
 
     private MessageGateway messageGateway;

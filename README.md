@@ -9,4 +9,8 @@ Consumer prints out the contents of the message.  Consumer property durableSubsc
 ```bash
 cf create-service p-rabbitmq standard mq-service
 ```
+### [Using Contract Verifier](https://cloud.spring.io/spring-cloud-contract/spring-cloud-contract.html) for Producer project.
+
+resources/contracts/*.groovy files are used to generate contract test files in target/generated-test-sources/contracts folder
+
 
