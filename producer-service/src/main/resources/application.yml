@@ -6,3 +6,11 @@ spring:
           destination: message.exchange
           contentType: application/json
           group: messagegroup
+#logging:
+#  level:
+#    ROOT: 'ERROR'
+#logging:
+#    level:
+#        star: WARN
+#        com.filenet.wcm: ERROR
+#        de.mycompany: DEBUG

@@ -15,14 +15,14 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.4.0.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		<spring-cloud-contract.version>1.0.0.M1</spring-cloud-contract.version>
+		<spring-cloud-contract.version>1.0.0.RELEASE</spring-cloud-contract.version>
 	</properties>
 
 	<dependencies>
@@ -50,11 +50,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!--<dependency>-->
-			<!--<groupId>org.springframework.cloud</groupId>-->
-			<!--<artifactId>spring-cloud-starter-contract-stub-runner</artifactId>-->
-			<!--<scope>test</scope>-->
-		<!--</dependency>-->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-contract-verifier</artifactId>
@@ -67,7 +62,7 @@
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>Brixton.SR5</version>
+				<version>LATEST</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -91,13 +86,6 @@
 				<configuration>
 					<baseClassForTests>io.pivotal.ec.ProducerContractTest</baseClassForTests>
 				</configuration>
-				<!--<dependencies>-->
-					<!--<dependency>-->
-						<!--<groupId>org.springframework.cloud</groupId>-->
-						<!--<artifactId>spring-cloud-contract-verifier</artifactId>-->
-						<!--<version>${spring-cloud-contract.version}</version>-->
-					<!--</dependency>-->
-				<!--</dependencies>-->
 			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -105,58 +93,4 @@
 			</plugin>
 		</plugins>
 	</build>
-	<repositories>
-		<repository>
-			<id>spring-snapshots</id>
-			<name>Spring Snapshots</name>
-			<url>https://repo.spring.io/snapshot</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>https://repo.spring.io/milestone</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
-	<pluginRepositories>
-		<pluginRepository>
-			<id>spring-snapshots</id>
-			<name>Spring Snapshots</name>
-			<url>http://repo.spring.io/libs-snapshot-local</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-		<pluginRepository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>http://repo.spring.io/libs-milestone-local</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</pluginRepository>
-		<pluginRepository>
-			<id>spring-plugin-snapshots</id>
-			<name>Spring Snapshots</name>
-			<url>http://repo.spring.io/plugins-snapshot-local</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-		<pluginRepository>
-			<id>spring-plugin-milestones</id>
-			<name>Spring Milestones</name>
-			<url>http://repo.spring.io/plugins-release-local</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</pluginRepository>
-	</pluginRepositories>
-
-
 </project>
